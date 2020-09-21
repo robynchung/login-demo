@@ -1,0 +1,10 @@
+[Settings]
+
+[build]
+  base = "frontend/"
+  publish = "build/"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
