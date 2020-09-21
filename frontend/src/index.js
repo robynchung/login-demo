@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import constants from "./constants";
-import env from "./config";
-
-console.log(env);
+import { auth } from "./lib/firebase";
+console.log(auth);
 
 function App() {
   const { inputType } = constants;
