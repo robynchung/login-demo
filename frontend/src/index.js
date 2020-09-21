@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import constants from "./constants";
+import env from "./config";
+
+console.log(env);
 
 function App() {
   const { inputType } = constants;
