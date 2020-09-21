@@ -1,4 +1,4 @@
 /frontend/.cache
-# /frontend/dist
+/frontend/dist
 /frontend/node_modules
 

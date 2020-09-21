@@ -1,8 +1,7 @@
 [Settings]
 
 [build]
-  base = "frontend/"
-  publish = ""
+  publish = "frontend/"
 
 [[redirects]]
   from = "/*"
