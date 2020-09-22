@@ -8,10 +8,12 @@ function App() {
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const onSubmit = event => {
+  const onSubmit = async event => {
     event.preventDefault();
 
-    signUp(userName, password);
+    const response = await signUp(userName, password);
+
+    console.log(response);
   };
 
   return (

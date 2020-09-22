@@ -8,17 +8,13 @@ let initialState = {
 
 export async function signUp(email, password) {
   const response = await auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
-    initialState = {
-      errorMessage: error.message
-    };
+    initialState = { ...initialState, errorMessage: error.message, isSuccess: false };
 
     throw initialState;
   });
 
   if (response?.additionalUserInfo?.isNewUser) {
-    initialState = {
-      user: response.user
-    };
+    initialState = { ...initialState, isSuccess: response.additionalUserInfo.isNewUser, user: response.user };
 
     return initialState;
   }
