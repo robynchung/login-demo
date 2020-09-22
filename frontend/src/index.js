@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { signUp } from "./lib/authentication";
 import constants from "./constants";
-import { auth } from "./lib/firebase";
-console.log(auth);
 
 function App() {
   const { inputType } = constants;
@@ -12,7 +11,7 @@ function App() {
   const onSubmit = event => {
     event.preventDefault();
 
-    console.log(userName, password);
+    signUp(userName, password);
   };
 
   return (
