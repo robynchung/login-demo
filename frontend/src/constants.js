@@ -3,5 +3,9 @@ module.exports = {
     password: "password",
     submit: "submit",
     text: "text"
+  },
+  socialType: {
+    facebook: "facebook",
+    google: "google"
   }
 };

@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { signUp } from "./lib/authentication";
+import { signUp, socialSignIn } from "./lib/authentication";
 import constants from "./constants";
 
 function App() {
-  const { inputType } = constants;
+  const { inputType, socialType } = constants;
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -21,6 +21,9 @@ function App() {
       <form onSubmit={onSubmit}>
         <input onChange={event => setUserName(event.target.value)} type={inputType.text} value={userName} />
         <input onChange={event => setPassword(event.target.value)} type={inputType.password} value={password} />
+
+        <button onClick={() => socialSignIn(socialType.facebook)}>facebook</button>
+        <button onClick={() => socialSignIn(socialType.google)}>google</button>
 
         <button type={inputType.submit}>submit</button>
       </form>
