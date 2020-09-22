@@ -11,9 +11,11 @@ function App() {
   const onSubmit = async event => {
     event.preventDefault();
 
-    const response = await signUp(userName, password);
+    try {
+      const response = await signUp(userName, password);
 
-    console.log(response);
+      console.log(response);
+    } catch (error) {}
   };
 
   return (
