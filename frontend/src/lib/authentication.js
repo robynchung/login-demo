@@ -31,7 +31,13 @@ export async function signIn(email, password) {
     initialState = { ...initialState, errorMessage: error.message, isSuccess: false };
   });
 
-  return response;
+  console.log(response);
+
+  auth.currentUser.getIdToken().then(token => {
+    cookies.set("token", token);
+  });
+
+  return initialState;
 }
 
 export function signOut() {
