@@ -19,7 +19,7 @@ export async function signUpWithEmail(email, password) {
     initialState = { ...initialState, isSuccess: response.additionalUserInfo.isNewUser, user: response.user };
 
     auth.currentUser.getIdToken().then(token => {
-      cookies.set("token", token);
+      cookies.set(constants.token, token);
     });
   }
 
@@ -31,17 +31,33 @@ export async function signIn(email, password) {
     initialState = { ...initialState, errorMessage: error.message, isSuccess: false };
   });
 
+  if (response?.user) {
+    initialState = { ...initialState, user: response?.user, isSuccess: true };
+  }
+
   auth.currentUser.getIdToken().then(token => {
-    cookies.set("token", token);
+    cookies.set(constants.token, token);
   });
 
   return initialState;
 }
 
 export async function signOut() {
-  const response = await auth.signOut().catch(function (error) {});
+  const response = await auth
+    .signOut()
+    .then(function () {
+      cookies.remove(constants.token);
+      initialState = { ...initialState, isSuccess: true, user: {} };
 
-  console.log(response);
+      return initialState;
+    })
+    .catch(function (error) {
+      initialState = { ...initialState, errorMessage: error.message, isSuccess: false };
+
+      return initialState;
+    });
+
+  return response;
 }
 
 export function socialSignIn(type) {
@@ -66,7 +82,7 @@ export function socialSignIn(type) {
     .then(function (result) {
       console.log(result);
       let token = result.credential.accessToken;
-      cookies.set("token", token);
+      cookies.set(constants.token, token);
 
       let user = result.user;
       initialState = { ...initialState, isSuccess: true, user };

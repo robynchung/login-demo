@@ -7,5 +7,6 @@ module.exports = {
   socialType: {
     facebook: "facebook",
     google: "google"
-  }
+  },
+  token: "token"
 };
