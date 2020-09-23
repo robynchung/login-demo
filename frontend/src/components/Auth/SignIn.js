@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { signIn, socialSignIn } from "../../lib/authentication";
 import constants from "../../constants";
 import pathList from "../../pathList";
 
 function SignIn() {
+  const history = useHistory();
   const { inputType, socialType } = constants;
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -15,8 +16,15 @@ function SignIn() {
     try {
       const signedIn = await signIn(userName, password);
 
-      console.log(signedIn);
-    } catch (error) {}
+      setUserName("");
+      setPassword("");
+
+      if (signedIn.isSuccess) {
+        history.push(pathList.home);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

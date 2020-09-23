@@ -32,7 +32,7 @@ export async function signIn(email, password) {
   });
 
   if (response?.user) {
-    initialState = { ...initialState, user: response?.user, isSuccess: true };
+    initialState = { ...initialState, errorMessage: "", user: response?.user, isSuccess: true };
   }
 
   auth.currentUser.getIdToken().then(token => {

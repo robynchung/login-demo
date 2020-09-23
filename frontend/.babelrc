@@ -1,3 +1,4 @@
 {
-  "presets": ["env", "react", "@babel/plugin-proposal-optional-chaining"]
+  "presets": ["@babel/env", "@babel/react", "module:@babel/plugin-proposal-optional-chaining"],
+  "plugins": ["@babel/transform-runtime"]
 }
