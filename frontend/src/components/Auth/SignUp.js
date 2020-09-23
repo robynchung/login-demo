@@ -23,6 +23,7 @@ function SignUp() {
 
   return (
     <>
+      <h1>Sign Up</h1>
       <form onSubmit={onSubmit}>
         <input onChange={event => setUserName(event.target.value)} type={inputType.text} value={userName} />
         <input onChange={event => setPassword(event.target.value)} type={inputType.password} value={password} />

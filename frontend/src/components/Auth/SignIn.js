@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { signIn, socialSignIn } from "../../lib/authentication";
 import constants from "../../constants";
+import pathList from "../../pathList";
 
 function SignIn() {
   const { inputType, socialType } = constants;
@@ -19,6 +21,7 @@ function SignIn() {
 
   return (
     <>
+      <h1>Sign In</h1>
       <form onSubmit={onSubmit}>
         <input onChange={event => setUserName(event.target.value)} type={inputType.text} value={userName} />
         <input onChange={event => setPassword(event.target.value)} type={inputType.password} value={password} />
@@ -28,6 +31,7 @@ function SignIn() {
 
       <button onClick={() => socialSignIn(socialType.facebook)}>facebook</button>
       <button onClick={() => socialSignIn(socialType.google)}>google</button>
+      <Link to={pathList.signUp}>Sign Up</Link>
     </>
   );
 }
