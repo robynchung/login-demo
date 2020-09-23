@@ -1,5 +1,6 @@
 module.exports = {
   inputType: {
+    email: "email",
     password: "password",
     submit: "submit",
     text: "text"
@@ -8,5 +9,8 @@ module.exports = {
     facebook: "facebook",
     google: "google"
   },
-  token: "token"
+  token: "token",
+  regex: {
+    email: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$./gim
+  }
 };

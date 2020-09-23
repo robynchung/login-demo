@@ -31,8 +31,8 @@ function SignIn() {
     <>
       <h1>Sign In</h1>
       <form onSubmit={onSubmit}>
-        <input onChange={event => setUserName(event.target.value)} type={inputType.text} value={userName} />
-        <input onChange={event => setPassword(event.target.value)} type={inputType.password} value={password} />
+        <input name="username" onChange={event => setUserName(event.target.value)} type={inputType.email} value={userName} />
+        <input name="password" onChange={event => setPassword(event.target.value)} type={inputType.password} value={password} />
 
         <button type={inputType.submit}>submit</button>
       </form>
