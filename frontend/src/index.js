@@ -8,10 +8,13 @@ import NoMatch from "./components/NoMatch";
 import pathList from "./pathList";
 
 function App() {
-  const { signIn, signUp } = pathList;
+  const { home, signIn, signUp } = pathList;
   return (
     <Router>
       <Switch>
+        <Route path={home}>
+          <Home />
+        </Route>
         <Route path={signIn}>
           <SignIn />
         </Route>

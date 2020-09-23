@@ -31,8 +31,6 @@ export async function signIn(email, password) {
     initialState = { ...initialState, errorMessage: error.message, isSuccess: false };
   });
 
-  console.log(response);
-
   auth.currentUser.getIdToken().then(token => {
     cookies.set("token", token);
   });
@@ -40,8 +38,10 @@ export async function signIn(email, password) {
   return initialState;
 }
 
-export function signOut() {
-  auth.signOut().catch(function (err) {});
+export async function signOut() {
+  const response = await auth.signOut().catch(function (error) {});
+
+  console.log(response);
 }
 
 export function socialSignIn(type) {
