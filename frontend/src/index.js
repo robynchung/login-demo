@@ -8,7 +8,7 @@ import NoMatch from "./components/NoMatch";
 import pathList from "./pathList";
 
 function App() {
-  const { home, signIn, signUp } = pathList;
+  const { signIn, signUp } = pathList;
   return (
     <Router>
       <Switch>
