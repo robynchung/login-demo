@@ -1,4 +1,6 @@
 import firebase from "firebase/app";
+import cookies from "js-cookie";
+
 import { auth } from "../lib/firebase";
 import constants from "../constants";
 
@@ -8,31 +10,28 @@ let initialState = {
   user: {}
 };
 
-export async function signUp(email, password) {
+export async function signUpWithEmail(email, password) {
   const response = await auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
     initialState = { ...initialState, errorMessage: error.message, isSuccess: false };
-
-    throw initialState;
   });
 
   if (response?.additionalUserInfo?.isNewUser) {
     initialState = { ...initialState, isSuccess: response.additionalUserInfo.isNewUser, user: response.user };
-
-    return initialState;
   }
+
+  return initialState;
 }
 
-export function signIn(email, password) {
-  auth.signInWithEmailAndPassword(email, password).catch(function (err) {
-    // Handle errors
+export async function signIn(email, password) {
+  const response = await auth.signInWithEmailAndPassword(email, password).catch(function (error) {
+    initialState = { ...initialState, errorMessage: error.message, isSuccess: false };
   });
+
+  return response;
 }
 
 export function signOut() {
-  // Sign out user
-  auth.signOut().catch(function (err) {
-    // Handle errors
-  });
+  auth.signOut().catch(function (err) {});
 }
 
 export function socialSignIn(type) {
@@ -55,20 +54,20 @@ export function socialSignIn(type) {
   auth
     .signInWithPopup(provider)
     .then(function (result) {
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      // ...
+      console.log(result);
+      let token = result.credential.accessToken;
+      cookies.set("token", token);
+
+      let user = result.user;
+      initialState = { ...initialState, isSuccess: true, user };
+
+      return initialState;
     })
     .catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
+      console.log();
+      let errorMessage = error.message;
+      initialState = { ...initialState, errorMessage, isSuccess: false };
+
+      return initialState;
     });
 }

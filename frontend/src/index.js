@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { signUp, socialSignIn } from "./lib/authentication";
+import { signIn, signUpWithEmail, socialSignIn } from "./lib/authentication";
 import constants from "./constants";
 
 function App() {
@@ -12,10 +12,14 @@ function App() {
     event.preventDefault();
 
     try {
-      const response = await signUp(userName, password);
+      const created = await signUpWithEmail(userName, password);
 
-      console.log(response);
-    } catch (error) {}
+      if (created.isSuccess) {
+        const signedIn = await signIn(userName, password);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -24,11 +28,11 @@ function App() {
         <input onChange={event => setUserName(event.target.value)} type={inputType.text} value={userName} />
         <input onChange={event => setPassword(event.target.value)} type={inputType.password} value={password} />
 
-        <button onClick={() => socialSignIn(socialType.facebook)}>facebook</button>
-        <button onClick={() => socialSignIn(socialType.google)}>google</button>
-
         <button type={inputType.submit}>submit</button>
       </form>
+
+      <button onClick={() => socialSignIn(socialType.facebook)}>facebook</button>
+      <button onClick={() => socialSignIn(socialType.google)}>google</button>
     </>
   );
 }
