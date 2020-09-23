@@ -1,16 +1,18 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import config from "../config";
+const { apiKey, appId, authDomain, databaseURL, measurementId, messagingSenderId, projectId, storageBucket } = config.firebase;
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDIpfzxhaEiBFch_fdtmhfsZ0Cabdx2Ulo",
-  authDomain: "login-demo-e10ea.firebaseapp.com",
-  databaseURL: "https://login-demo-e10ea.firebaseio.com",
-  projectId: "login-demo-e10ea",
-  storageBucket: "login-demo-e10ea.appspot.com",
-  messagingSenderId: "886397074137",
-  appId: "1:886397074137:web:962830e71a890245985cc8",
-  measurementId: "G-X75T625WPM"
+  apiKey,
+  authDomain,
+  databaseURL,
+  projectId,
+  storageBucket,
+  messagingSenderId,
+  appId,
+  measurementId
 };
 
 firebase.initializeApp(firebaseConfig);
