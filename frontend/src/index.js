@@ -15,7 +15,7 @@ function App() {
       const created = await signUpWithEmail(userName, password);
 
       if (created.isSuccess) {
-        const signedIn = await signIn(userName, password);
+        await signIn(userName, password);
       }
     } catch (error) {
       console.log(error);

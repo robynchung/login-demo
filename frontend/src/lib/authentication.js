@@ -17,6 +17,10 @@ export async function signUpWithEmail(email, password) {
 
   if (response?.additionalUserInfo?.isNewUser) {
     initialState = { ...initialState, isSuccess: response.additionalUserInfo.isNewUser, user: response.user };
+
+    auth.currentUser.getIdToken().then(token => {
+      cookies.set("token", token);
+    });
   }
 
   return initialState;
