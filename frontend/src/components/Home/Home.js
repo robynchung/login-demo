@@ -1,18 +1,9 @@
 import React from "react";
-
-import { signOut } from "../../lib/authentication";
+import { Link, useHistory } from "react-router-dom";
+import Header from "../Header";
 
 function Home() {
-  const onSignOut = async () => {
-    await signOut();
-  };
-
-  return (
-    <>
-      Sign out
-      <button onClick={() => onSignOut()}>Sign Out</button>
-    </>
-  );
+  return <>{/* <Header /> */}</>;
 }
 
 export default Home;

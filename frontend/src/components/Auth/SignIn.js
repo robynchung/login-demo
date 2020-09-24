@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { signIn, socialSignIn } from "../../lib/authentication";
 import constants from "../../constants";
 import pathList from "../../pathList";
 
-function SignIn() {
+function SignIn(props) {
   const history = useHistory();
+  const { setIsAuthenticated } = props;
   const { inputType, socialType } = constants;
-  const [userName, setUserName] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
 
   const onSubmit = async event => {
     event.preventDefault();
@@ -20,6 +21,7 @@ function SignIn() {
       setPassword("");
 
       if (signedIn.isSuccess) {
+        setIsAuthenticated(true);
         history.push(pathList.home);
       }
     } catch (error) {
@@ -39,6 +41,7 @@ function SignIn() {
 
       <button onClick={() => socialSignIn(socialType.facebook)}>facebook</button>
       <button onClick={() => socialSignIn(socialType.google)}>google</button>
+
       <Link to={pathList.signUp}>Sign Up</Link>
     </>
   );
