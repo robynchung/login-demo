@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, useHistory } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import pathList from "../pathList";
 
 function PrivateRoute({ component: Component, ...rest }) {
