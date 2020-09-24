@@ -1,15 +1,22 @@
 import React from "react";
-import { signOut } from "../../lib/authentication";
+import { useHistory } from "react-router-dom";
+import { signOut } from "../lib/authentication";
+import pathList from "../pathList";
 
-function Header() {
+function Header(props) {
+  const { setIsAuthenticated } = props;
   const history = useHistory();
+
   const onSignOut = async () => {
-    // signOut().then(() =>  );
+    signOut().then(() => {
+      setIsAuthenticated(false);
+      history.push(pathList.signIn);
+    });
   };
 
   return (
     <>
-      signout <button>sign out</button>
+      signout <button onClick={() => onSignOut()}>sign out</button>
     </>
   );
 }
