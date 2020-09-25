@@ -16,7 +16,10 @@ function Header(props) {
 
   return (
     <>
-      signout <button onClick={() => onSignOut()}>sign out</button>
+      signout{" "}
+      <button onClick={() => onSignOut()} data-cy="sign-out">
+        sign out
+      </button>
     </>
   );
 }

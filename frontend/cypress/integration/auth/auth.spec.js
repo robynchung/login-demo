@@ -1,8 +1,8 @@
-import { regex } from "../../../src/constants";
+import pathList from "../../../src/pathList";
 
-describe("Sign Out", () => {
+describe("Sign In and Out", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/");
+    cy.visit(`http://localhost:3000${pathList.signIn}`);
   });
 
   it("input change working: ", () => {
@@ -14,6 +14,9 @@ describe("Sign Out", () => {
     cy.get("[data-cy=submit]").submit();
     cy.url().should("eq", "http://localhost:3000/");
     cy.getCookie("token").should("exist");
+
+    cy.get("[data-cy=sign-out]").click();
+    cy.url().should("eq", `http://localhost:3000${pathList.signIn}`);
   });
 
   it("username should failed: ", () => {
