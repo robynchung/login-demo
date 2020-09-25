@@ -8,7 +8,6 @@ import PrivateRoute from "./components/PrivateRoute";
 import SignIn from "./components/Auth/SignIn";
 import SignUp from "./components/Auth/SignUp";
 import NoMatch from "./components/NoMatch";
-import Header from "./components/Header";
 
 import constants from "./constants";
 import pathList from "./pathList";
