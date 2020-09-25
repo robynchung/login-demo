@@ -32,9 +32,9 @@ function SignIn(props) {
   return (
     <>
       <h1>Sign In</h1>
-      <form onSubmit={onSubmit}>
-        <input name="username" onChange={event => setUserName(event.target.value)} type={inputType.email} value={userName} />
-        <input name="password" onChange={event => setPassword(event.target.value)} type={inputType.password} value={password} />
+      <form onSubmit={onSubmit} data-cy={inputType.submit}>
+        <input onChange={event => setUserName(event.target.value)} type={inputType.email} value={userName} data-cy="username" />
+        <input onChange={event => setPassword(event.target.value)} type={inputType.password} value={password} data-cy="password" />
 
         <button type={inputType.submit}>submit</button>
       </form>
