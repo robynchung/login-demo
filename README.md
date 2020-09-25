@@ -1,4 +1,4 @@
-# Firebase Login
+# Firebase Login Demo
 
 - React Hook
 - Cypress testing
