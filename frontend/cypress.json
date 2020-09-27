@@ -1,3 +1,4 @@
 {
-  "baeUrl": "http://localhost:3000"
+  "baeUrl": "http://localhost:3000",
+  "experimentalComponentTesting": true
 }

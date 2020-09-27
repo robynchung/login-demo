@@ -1,6 +1,6 @@
 import pathList from "../../../src/pathList";
 
-describe("Sign In and Out", () => {
+describe("Sign In / Out", () => {
   beforeEach(() => {
     cy.visit(`http://localhost:3000${pathList.signIn}`);
   });
@@ -17,6 +17,9 @@ describe("Sign In and Out", () => {
 
     cy.get("[data-cy=sign-out]").click();
     cy.url().should("eq", `http://localhost:3000${pathList.signIn}`);
+    cy.getCookies("token").then(cookies => {
+      expect(cookies).to.have.lengthOf(0);
+    });
   });
 
   it("username should failed: ", () => {
