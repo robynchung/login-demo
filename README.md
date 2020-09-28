@@ -1,5 +1,5 @@
 # Firebase Login Demo
 
 - React Hook
-- Cypress testing
+- Cypress e2e testing
 - Firebase authentication
